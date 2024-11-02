@@ -1,0 +1,52 @@
+#include <iostream>
+#include <time.h>
+
+using namespace std;
+
+void guessTheNumber();
+
+int main(int argc, const char * argv[]){
+    guessTheNumber();
+    cin.get();
+    return 0;
+}
+
+void guessTheNumber(){
+    cout << "Welcome to the Game!" << endl;
+    int mistakes = 0;
+    srand(time(0));
+    bool winner = false;
+    int genarateNumber = 1 + rand() % 100;
+    do{
+        int choiseNumber;
+        cout << "Enter your number just you like -> ";
+        cin >> choiseNumber;
+        if(choiseNumber < 1 || choiseNumber > 100){
+            while(choiseNumber < 1 || choiseNumber > 100){
+                cout << "This is wrong number, please, enter your number correctly -> ";
+                cin >> choiseNumber;
+            }
+        }
+        if(genarateNumber == choiseNumber){
+            cout << "You Win!" << endl;
+            winner = true;
+        }
+        else{
+            if(choiseNumber < genarateNumber){
+                cout << "Your number is small..." << endl;
+            }
+            else {
+                cout << "Your number is big..." << endl;
+            }
+            cout << "Just try again!" << endl;
+            mistakes++;
+        }
+        if(mistakes == 5){
+            cout << "Don't worry, you can do it!" << endl;
+        }
+        if(mistakes == 10){
+            cout << "You lose! My number is : " << genarateNumber << endl;
+            break;
+        }
+    }while(!winner);
+}
